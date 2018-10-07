@@ -1,3 +1,4 @@
-h1 {
-    color: blue;
+.jumbotron {
+    display: flex;
+    justify-content: space-between;
 }
