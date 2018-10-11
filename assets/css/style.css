@@ -174,3 +174,10 @@ h1 {
 
 
 
+.addFavorite{
+    overflow: auto;
+    height: 10%;
+    font-size: 0.2em;
+    color: black;
+    background-color: white;
+}
