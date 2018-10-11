@@ -3,6 +3,17 @@ var ingredientsCounter = -1;
 var searchResponse = null;
 var searchYoutube = null;
 
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCN2egZvBwkjcRawYcQ6v314gMNbvB8hDM",
+    authDomain: "ucla-project-1-218617.firebaseapp.com",
+    databaseURL: "https://ucla-project-1-218617.firebaseio.com",
+    projectId: "ucla-project-1-218617",
+    storageBucket: "ucla-project-1-218617.appspot.com",
+    messagingSenderId: "993757207683"
+};
+    firebase.initializeApp(config);
+    var database = firebase.database();
 
 
 function recipeSearch(x, y) {
@@ -37,13 +48,21 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         // console.log(mealTitle);
         // console.log("Value:" + viewRecipe);
 
+        //adds a favorite button and stores necessary information for
+        var addFavorite = $("<button>");
+        addFavorite.addClass("addFavorite");
+        addFavorite.attr("value", searchResponse.hits[i].recipe.label);
+        addFavorite.attr("link", searchResponse.hits[i].recipe.url);
+        addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
+        addFavorite.text("Favorite");
+
         // Recipe Image
         var imgTag = $("<img>");
         imgTag.addClass("recipeImage");
         imgTag.attr("src", searchResponse.hits[i].recipe.image);
         imgTag.attr("alt", "Recipe Image");
         
-        eachResult.append(imgTag, mealTitle, viewRecipe);
+        eachResult.append(imgTag, mealTitle, viewRecipe, addFavorite);
         recipeDiv.prepend(eachResult);
 
         
@@ -94,6 +113,25 @@ $("#recipeSearch").on("click", function() {
     // NAvigate to ingredients
     // var ingredients = $("<p>").text(searchResponse.hits[i].recipe.ingredientLines);
     // ingredients.addClass("ingredients");
+
+    //function to store favorites
+    $(document).on("click", ".addFavorite", function(){
+        var storeMeal = $(this).attr("value");
+        var mealLink = $(this).attr("link");
+        var imageLink = $(this).attr("imageLink")
+        // var mealLink = $(this).attr("link")
+        console.log("Meal Title click: " + storeMeal);
+        //adds a new child for every favorite clicked and stores the title, the link and the image
+        database.ref().push({
+            title: storeMeal,
+            link: mealLink,
+            image: imageLink
+        });
+    });
+
+
+
+
 
 
 
