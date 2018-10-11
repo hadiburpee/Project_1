@@ -4,6 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <title>Project 1</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
@@ -12,17 +19,66 @@
 
 <body>
     <div class="container">
-            <div id="mainContainer">
-                <form autocomplete="off">
-                    <div class="form-group">
-                        <label for="inputSomething" id="enterIng">Enter Ingredients here</label>
-                        <input type="input" class="form-control" id="input-ingredient">
-                    </div>
-                </form>
- 
-                <button type="button" class="btn btn-primary" id="addItem">Add item</button>
-                <button type="button" class="btn btn-primary" id="recipeSearch">Search</button>
-                <div id="ingredientsList"></div>
+        <div id="mainContainer">
+            <form autocomplete="off">
+                <div class="form-group">
+                    <label for="inputSomething" id="enterIng">Enter Ingredients here</label>
+                    <input type="input" class="form-control" id="input-ingredient">
+                </div>
+            </form>
+
+            <button type="button" class="btn btn-primary" id="addItem">Add item</button>
+            <button type="button" class="btn btn-primary" id="recipeSearch">Search</button>
+            <div id="ingredientsList"></div>
+        </div>
+    </div>
+
+
+
+    <!-- ========================= MODAL =============================== -->
+    <!-- PLEASE DO NOT TOUCH -->
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <div class="row">
+
+                <!-- Recipe info div -->
+                <div class="col-6" id="recipeHolder">
+                    <div id="modalTitle"></div>
+                    <div id="topSectionModal">
+                        <img id="modalImage">
+                        <div id="recipeDetails">
+                            <ul id="infoList">
+                                <li id="calorieCount"></li>
+                                <br>
+                                <li id="healthLabels"></li> 
+                                <br>
+                                <li><h2>Original Source:</h2><a id="originalSOurce" target="_blank"></a></li>
+                            </ul>
+
+                        </div>
+                </div>
+                    <div id="recipeInstructions"></div>
+                </div>
+                <div class="col-1"></div>
+
+
+                <!-- YouTube videos div -->
+                <div class="col-4" id="youTubeVids">
+                        <h1 style="color: black;">YouTube vids go here</h1>
+                </div>
+
+                <div class="col-1"></div>
+            </div>
+
+
+
+
         </div>
     </div>
 
@@ -34,4 +90,3 @@
 </body>
 
 </html>
-
