@@ -1,54 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Recipe Search</title>
+<html lang="en-us">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
-        <link type="text/css" href="../Project_1/assets/css/style.css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="header">
-                <h1 id="heading">Recipe Search</h1>
-                <h3 id="caption">Powered by Youtube & Edamam API </h3>
-            
-                <div id="topics-buttons" class="text-center"></div>
+<head>
+    <meta charset="utf-8" />
+    <title>Project 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
-                <div class="container text-center">
-                        <br>
-                        <!-- Form to add new buttons will appear here -->
-                        <form id="topics-form"> 
-                                <h1>ENTER INGREDIENT</h1>
-                                <input type="text" name="email" size="35" id="topics-input"> <br><br>
-                            <!-- <input id="add-topics" type="submit" name="Submit"> -->
-                            <button class="btn recipeSearch" id="add-topics" type="submit">Add Item</button>
-                            <button class="btn btnPrimary" type="button">Search</button>
-                        </form>
-                        
+</head>
+
+<body>
+    <div class="container">
+            <div id="mainContainer">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label for="inputSomething" id="enterIng">Enter Ingredients here</label>
+                        <input type="input" class="form-control" id="input-ingredient">
                     </div>
-
-                    <div class="container text-center">
-                            <br><br>
-                            <!-- Gifs will appear here -->
-                            <h6>Click image to toggle GIF animation</h6>
-                            <div id="gifs-appear-here"></div>
-                        </div>
-
-            <div id="footer">
-                <div id="footNav">
-                    <a href="https://github.com/bpacana/bpacana.github.io">About Me</a>
-                    <a href="https://github.com/bpacana/bpacana.github.io">Github Repository</a>
-                </div>
-                <div id="copyrights">
-                    Created by <a href="https://github.com/bpacana/bpacana.github.io">Who's Bryan?</a>
-                </div>
-            </div>
-            <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-            <script src="../Project_1/assets/javascript/app.js"></script>
+                </form>
+ 
+                <button type="button" class="btn btn-primary" id="addItem">Add item</button>
+                <button type="button" class="btn btn-primary" id="recipeSearch">Search</button>
+                <div id="ingredientsList"></div>
         </div>
-    </body>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</body>
+
 </html>
+
