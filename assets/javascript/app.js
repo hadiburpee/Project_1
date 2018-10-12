@@ -1,8 +1,10 @@
 var searchParam = [];
 var ingredientsCounter = -1;
 var searchResponse = null;
+var youTubeResponse = null;
 var searchYoutube = null;
 var instructions = null;
+var tubeSearch = false;
 
   // Initialize Firebase
   var config = {
@@ -76,6 +78,7 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         
     }
     searchYoutube = $(".viewRecipe").val();
+
 });
 }
 
@@ -83,6 +86,9 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
 $(document).on("click", ".viewRecipe", function(event) {
 
     event.preventDefault();
+
+    //clears youtube video div
+    $("#youTubeVids").empty();
 
     // Recipe Title
     var storeTitle = $(this).val();
@@ -113,11 +119,20 @@ $(document).on("click", ".viewRecipe", function(event) {
     $("#recipeInstructions").text(instructions);
 
     
+    var searchYou = $(".viewRecipe").val();
 
-
+    console.log(searchYou);
     modalUp();
     // Call youtube API
-    // youtubeSearchAPI(storeTitle);
+
+    youtubeSearchAPI(searchYou);
+
+    
+    
+
+    
+
+    
     
 });
 
@@ -185,15 +200,28 @@ $("#recipeSearch").on("click", function() {
         method: "GET"
         }).then(function(response) {
             console.log(response);
-
+            console.log(response.items[0].id.videoId);
+        
+            //for loop to call addVideo function for youtube display    
+        for(i=0; i<3; i++){
+            youTubeResponse = response.items[i].id.videoId; 
+            addVideo(youTubeResponse);
+        }
         }, function(err){
         console.log('*****',err)
-    });
 
+    });
     
 };
 
-
+//function to dynamically add video to screen
+function addVideo(x){
+    var url = "https://www.youtube.com/embed/" + x;
+    var newDiv = $("<iframe>");
+    newDiv.attr('id', 'frameVid').attr('width', '350').attr('height','150').attr('frameborder', '0').attr('src', url);
+    console.log(newDiv);
+    $("#youTubeVids").append(newDiv);
+}
 
 // MODAL 
 // Get the modal
