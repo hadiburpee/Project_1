@@ -3,20 +3,21 @@
 }
 
 body {
-    background-image: url(../images/cooking.jpg);
+    background-image: url(../images/recipeBookBackground.jpg);
     background-size: cover;
+    font-family: notepad;
 }
 
 
 #mainContainer {
-    /* border: 1px solid black; */
-    height: 650px;
-    width: 80%;
-    margin-top: 5%;
-    margin-left: 10%;
-    background: rgba(0,0,0, 0.6);
-    text-align: center;
-    overflow: scroll;
+    /* border: 5px solid rgb(39, 39, 39); */
+   height: 650px;
+   width: 80%;
+   margin-top: 5%;
+   margin-left: 10%;
+   /* background: rgba(218, 155, 5, 0.22); */
+   text-align: center;
+   overflow: scroll;
 }
 
 #input-ingredient {
@@ -117,6 +118,19 @@ body {
     color: black;
     background-color: white;
 }
+
+
+/* ========================== FONTS ============================ */
+
+
+@font-face {
+    font-family: notePad;
+    src: url(../fonts/Quentin.ttf);
+}
+
+
+
+
 
 
 
