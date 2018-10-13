@@ -5,6 +5,7 @@ var youTubeResponse = null;
 var searchYoutube = null;
 var instructions = null;
 var tubeSearch = false;
+var reset =  false;
 
   // Initialize Firebase
   var config = {
@@ -118,22 +119,16 @@ $(document).on("click", ".viewRecipe", function(event) {
     var instructions = $(this).attr("link");
     $("#recipeInstructions").text(instructions);
 
-    
-    var searchYou = $(".viewRecipe").val();
+    //pull the value from the viewRecipe class
+    var searchYou = $(this).val();
 
-    console.log(searchYou);
+    console.log("search you" + searchYou);
+    //displays the modal
     modalUp();
+    
     // Call youtube API
-
     youtubeSearchAPI(searchYou);
 
-    
-    
-
-    
-
-    
-    
 });
 
 
@@ -149,9 +144,10 @@ $("#addItem").on("click", function() {
     newDiv.addClass("ingredients");
     newDiv.text(searchParam[ingredientsCounter]);
     $("#ingredientsList").append(newDiv);
- 
     $("#input-ingredient").val("");
-    
+    //for the reset button
+    reset = false;
+
 });
 
 // Search Recipes
@@ -159,6 +155,7 @@ $("#recipeSearch").on("click", function() {
 
     $(".ingredients").val(recipeSearch(searchParam));
     $("#ingredientsList").html("");
+    
 
 });
 
@@ -182,6 +179,19 @@ $("#recipeSearch").on("click", function() {
     });
 
 
+    //function to reset everything and allow to add new ingredients
+
+    $(document).on("click", "#resetButton", function(){
+        console.log("reset value: " + reset);
+        if(reset == false){
+        searchParam = [];
+        $("#ingredientsList").empty();
+        reset = true;
+        ingredientsCounter = -1;
+        }
+
+    });
+
 
 
 
@@ -191,8 +201,8 @@ $("#recipeSearch").on("click", function() {
     // Creating an AJAX call for the specific recipe button being clicked
     function youtubeSearchAPI(recipe) {
 
-
-    var queryURL2 = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + recipe + " recipe" + "&key=AIzaSyBRPCZsyEmsspOCYbRltXGrLgf8-o9YIRY";
+        
+    var queryURL2 = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + recipe + " how to make" + "&key=AIzaSyBRPCZsyEmsspOCYbRltXGrLgf8-o9YIRY";
 
 
     $.ajax({
@@ -206,6 +216,8 @@ $("#recipeSearch").on("click", function() {
         for(i=0; i<3; i++){
             youTubeResponse = response.items[i].id.videoId; 
             addVideo(youTubeResponse);
+            //allows for reset button to work
+            reset = false;
         }
         }, function(err){
         console.log('*****',err)
@@ -218,7 +230,7 @@ $("#recipeSearch").on("click", function() {
 function addVideo(x){
     var url = "https://www.youtube.com/embed/" + x;
     var newDiv = $("<iframe>");
-    newDiv.attr('id', 'frameVid').attr('width', '350').attr('height','150').attr('frameborder', '0').attr('src', url);
+    newDiv.attr('id', 'frameVid').attr('width', '350').attr('height','150').attr('frameborder', '0').attr("allowfullscreen", '').attr('src', url);
     console.log(newDiv);
     $("#youTubeVids").append(newDiv);
 }
