@@ -179,16 +179,46 @@ $("#recipeSearch").on("click", function() {
     });
 
 
-    //function to reset everything and allow to add new ingredients
+    //function button reset everything and allow to add new ingredients
 
     $(document).on("click", "#resetButton", function(){
         console.log("reset value: " + reset);
         if(reset == false){
+        resetDiv();
+        reset = true;
+
+        }
+
+    });
+
+    //reset function to be called in reset button and view favorites
+    function resetDiv(){
         searchParam = [];
         $("#ingredientsList").empty();
-        reset = true;
         ingredientsCounter = -1;
-        }
+    }
+
+
+    //for a button to view favorites
+    $(document).on("click", "#viewFavorites", function(){
+        resetDiv();
+        database.ref().on("child_added", function(snapshot){
+            var mealTitle = snapshot.val().title;
+            var mealLink = snapshot.val().link;
+            var imageLink = snapshot.val().image;
+            var addFav = $("<div>");
+            var addImg = $("<img>");
+            addImg.attr('src', imageLink);
+            var addLink = $("<a>");
+            addLink.attr('href', mealLink);
+            addLink.text(mealTitle);
+            addFav.addClass(".eachResult");
+            $("#ingredientsList").append(mealTitle, addLink, addImg);
+
+
+        });
+
+
 
     });
 
