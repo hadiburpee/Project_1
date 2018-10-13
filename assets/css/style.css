@@ -5,19 +5,30 @@
 body {
     background-image: url(../images/recipeBookBackground.jpg);
     background-size: cover;
-    font-family: notepad;
+    
 }
 
 
 #mainContainer {
-    /* border: 5px solid rgb(39, 39, 39); */
+   /* border: 1px solid black; */
    height: 650px;
    width: 80%;
-   margin-top: 5%;
+   margin-top: 10%;
    margin-left: 10%;
-   /* background: rgba(218, 155, 5, 0.22); */
    text-align: center;
    /* overflow: scroll; */
+}
+
+h1 {
+    font-size: 5em;
+    font-weight: bold;
+    font-family: notePad;
+}
+
+#insideContainer {
+    /* border: 1px solid black; */
+    width: 90%;
+    float: right;
 }
 
 #input-ingredient {
@@ -33,21 +44,44 @@ body {
 }
 
 #addItem {
-    width: 30%;
+    width: 12%;
     color: white;
-    background-color: black;
+    background-color: #3e5a07;
     border: none;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
     border-radius: 50px;
 }
+
+#addItem:hover {
+    background-color: #547b1a;
+}
+
+#resetButton {
+    width: 12%;
+    color: white;
+    background-color: #3e5a07;
+    border: none;
+    /* font-size: 1.5em; */
+    border-radius: 50px;
+}
+
+#resetButton:hover {
+    background-color: #547b1a;
+}
+
 
 #recipeSearch {
     width: 30%;
     color: white;
-    background-color: black;
+    background-color: #3e5a07;;
     border: none;
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: bold;
     border-radius: 50px;
+}
+
+#recipeSearch:hover {
+    background-color: #547b1a;
 }
 
 #ingredientsList {
@@ -84,8 +118,10 @@ body {
 }
 
 .ingredients {
-    color: white;
-    font-size: 0.5em;
+    color: black;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: notePad;
 }
 
 .viewRecipe {
@@ -99,20 +135,6 @@ body {
     font-weight: bold;
 }
 
-
-.btn {
-    position: relative;
-    margin: 0 auto;
-    width: var(--btn-w);
-    color: var(--primary);
-    border: .15em solid var(--primary);
-    border-radius: 5em;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.3em;
-    line-height: 2em;
-    cursor: pointer;    
-}
 
 .addFavorite {
     margin-top: auto;
@@ -133,6 +155,11 @@ body {
 @font-face {
     font-family: notePad;
     src: url(../fonts/Quentin.ttf);
+}
+
+@font-face {
+    font-family: scribble;
+    src: url(../fonts/BookletCordel.ttf);
 }
 
 
