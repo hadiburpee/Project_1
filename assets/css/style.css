@@ -17,7 +17,7 @@ body {
    margin-left: 10%;
    /* background: rgba(218, 155, 5, 0.22); */
    text-align: center;
-   overflow: scroll;
+   /* overflow: scroll; */
 }
 
 #input-ingredient {
@@ -89,11 +89,14 @@ body {
 }
 
 .viewRecipe {
-    width: 150px;
+    margin-top: auto;
+    margin-left: auto;
+    width: 78px;
     display: inline-block;
-    font-size: 0.2em;
+    font-size: 0.8em;
     color: black;
     background-color: white;
+    font-weight: bold;
 }
 
 
@@ -112,11 +115,15 @@ body {
 }
 
 .addFavorite {
-    overflow: auto;
-    height: 10%;
-    font-size: 0.2em;
+    margin-top: auto;
+    /* margin-left: auto; */
+    width: 78px;
+    height: 55px;
+    display: inline-block;
+    font-size: 0.8em;
     color: black;
     background-color: white;
+    font-weight: bold;
 }
 
 
