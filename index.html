@@ -24,15 +24,16 @@
                     <h1>Enter ingredients here</h1>
             <form autocomplete="off">
                 <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="resetButton">Start Over</button>
                     <input type="input" class="form-control" id="input-ingredient">
+                    <button type="button" class="btn btn-primary" id="addItem">Add Item</button>
                 </div>
             </form>
 
-            <button type="button" class="btn btn-primary" id="addItem">Add item</button>
-            <button type="button" class="btn btn-primary" id="recipeSearch">Search</button>
-            <br>
-            <button type="button" class="btn btn-primary" id="resetButton">Start Over</button>
-            <button type="button" class="btn btn-primary" id="viewFavorites">View Favorites</button>
+            <button type="button" class="btn btn-primary" id="recipeSearch">Search recipes</button>
+
+            
+            <!-- <button type="button" class="btn btn-primary" id="viewFavorites">View Favorites</button> -->
             <div id="ingredientsList"></div>
         </div>
     </div>
