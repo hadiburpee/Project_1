@@ -150,6 +150,11 @@ $("#addItem").on("click", function() {
 
 });
 
+$(document).on("click", "#addItem", function(){
+
+    event.preventDefault();
+});
+
 // Search Recipes
 $("#recipeSearch").on("click", function() {
 
