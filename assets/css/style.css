@@ -56,6 +56,22 @@ h1 {
     color: white;
 }
 
+
+#viewFavorites {
+    width: 12%;
+    color: white;
+    background-color: #3e5a07;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    margin: auto;
+}
+
+#viewFavorites:hover {
+    background-color: #71af22;
+}
+
+
 #addItem {
     width: 12%;
     color: white;
@@ -81,6 +97,7 @@ h1 {
     border-radius: 5px;
     /* margin-top: 1%; */
     margin-right: 5px;
+    margin-left: 5px;
 }
 
 #resetButton:hover {
