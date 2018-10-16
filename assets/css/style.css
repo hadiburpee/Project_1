@@ -5,24 +5,30 @@
 body {
     background-image: url(../images/recipeBookBackground.jpg);
     background-size: cover;
-    /* background-repeat: no-repeat; */
+    height: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     
 }
 
 #mainContainer {
    /* border: 1px solid black; */
-   height: 650px;
-   width: 80%;
-   margin-top: 10%;
-   margin-left: 10%;
+   height: 750px;
+   width: 55%;
+   margin: auto;
    text-align: center;
    overflow: scroll;
+   padding-top: 1%;
+  
 }
 
 h1 {
-    font-size: 5em;
-    font-weight: bold;
+    font-weight: bolder;
     font-family: notePad;
+    font-size: 5em;
+    margin-right: 7%;
 }
 
 .form-group {
@@ -37,7 +43,7 @@ h1 {
 }
 
 #input-ingredient {
-    width: 40%;
+    width: 45%;
     margin-right: none;
     text-align: center;
     font-size: 2em;
@@ -51,7 +57,7 @@ h1 {
 }
 
 #addItem {
-    width: 10%;
+    width: 12%;
     color: white;
     background-color: #3e5a07;
     font-weight: bold;
@@ -66,7 +72,7 @@ h1 {
 }
 
 #resetButton {
-    width: 10%;
+    width: 12%;
     color: white;
     background-color: #3e5a07;
     border: none;
@@ -106,26 +112,27 @@ h1 {
 }
 
 .eachResult {
-    display: flex;
     text-align: initial;
-    margin: 3%;
+    /* margin: 3%; */
+    margin-bottom: 4%;
     padding: 1%;
     border: 2px solid white;
     background: rgba(255, 255, 255, 0.6);
     color: black;
     overflow: hidden;
+    width: 400px;
 }
 
 .recipeImage {
-    width: 40%;
+    float: left;
+    width: 50%;
     height: 30%;
     border: 2px solid white;
+    margin-right: 2%;
 }
 
 .mealTitle {
-    margin-top: -8px;
-    margin-left: 2%;
-    font-size: 0.7em;
+    font-size: 0.9em;
     font-weight: bold;
 }
 
@@ -137,27 +144,30 @@ h1 {
 }
 
 .viewRecipe {
-    margin-top: auto;
-    margin-left: auto;
-    width: 78px;
-    display: inline-block;
     font-size: 0.8em;
     color: black;
-    background-color: white;
+    background-color:#3e5a07;;
+    color: white;
     font-weight: bold;
+    width: 100%;
 }
 
+.viewRecipe:hover {
+    background-color: #71af22;
+}
 
 .addFavorite {
-    margin-top: auto;
-    /* margin-left: auto; */
-    width: 78px;
-    height: 55px;
-    display: inline-block;
     font-size: 0.8em;
     color: black;
     background-color: white;
     font-weight: bold;
+    /* margin-top: 32%; */
+    background-color:#3e5a07;;
+    color: white;
+}
+
+.addFavorite:hover {
+    background-color: #71af22;
 }
 
 
@@ -183,6 +193,8 @@ h1 {
 /* =============== MODAL ================ PLEASE DO NOT TOUCH */
 /* Modal Content/Box */
 .modal-content {
+    background-image: url(../images/openBook.jpg);
+    background-size: cover;
     border-radius: 10px;
     color: black;
     padding: 20px;

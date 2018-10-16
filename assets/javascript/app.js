@@ -41,6 +41,9 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         // Creates a div to hold INDIVIDUAL results
         var eachResult = $("<div>");
         eachResult.addClass("eachResult");
+        // Create div to hold buttons
+        var buttonsDiv = $("<div>");
+        buttonsDiv.addClass("buttonsDiv");
         // Recipe title
         var mealTitle = $("<p>").text(searchResponse.hits[i].recipe.label);
         mealTitle.addClass("mealTitle");
@@ -64,7 +67,7 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         addFavorite.attr("value", searchResponse.hits[i].recipe.label);
         addFavorite.attr("link", searchResponse.hits[i].recipe.url);
         addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
-        addFavorite.text("Favorite");
+        addFavorite.text("Add ♡");
 
         // Recipe Image
         var imgTag = $("<img>");
@@ -72,7 +75,8 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         imgTag.attr("src", searchResponse.hits[i].recipe.image);
         imgTag.attr("alt", "Recipe Image");
         
-        eachResult.append(imgTag, mealTitle, viewRecipe, addFavorite);
+        buttonsDiv.append(addFavorite, viewRecipe);
+        eachResult.append(imgTag, mealTitle, buttonsDiv);
         recipeDiv.prepend(eachResult);
 
         
