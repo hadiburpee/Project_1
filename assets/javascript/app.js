@@ -104,20 +104,16 @@ $(document).on("click", ".viewRecipe", function(event) {
     // Calories 
     var calories = $(this).attr("cal");
     $("#calorieCount").text("Calorie Count: " + Math.floor(calories));
-    // Health Labels
-    var healthLabels = $(this).attr("healthLabels");
-    $("#healthLabels").text(healthLabels);
-
-
-
-
+    
     // Original Source
     var originalSource = $(this).attr("origSrc");
     var sourceName = $(this).attr("srcName");
     $("#originalSOurce").text(sourceName);
     $("#originalSOurce").attr("href", originalSource);
 
-
+    // Health Labels
+    var healthLabels = $(this).attr("healthLabels");
+    $("#healthLabels").text(healthLabels);
 
     // Instructions
     var instructions = $(this).attr("link");
@@ -250,6 +246,9 @@ $("#recipeSearch").on("click", function() {
         }).then(function(response) {
             console.log(response);
             console.log(response.items[0].id.videoId);
+
+           
+            
         
             //for loop to call addVideo function for youtube display    
         for(i=0; i<3; i++){
@@ -269,7 +268,7 @@ $("#recipeSearch").on("click", function() {
 function addVideo(x){
     var url = "https://www.youtube.com/embed/" + x;
     var newDiv = $("<iframe>");
-    newDiv.attr('id', 'frameVid').attr('width', '350').attr('height','150').attr('frameborder', '0').attr("allowfullscreen", '').attr('src', url);
+    newDiv.attr('id', 'frameVid').attr('width', '400').attr('height','200').attr('frameborder', '0').attr("allowfullscreen", '').attr('src', url);
     console.log(newDiv);
     $("#youTubeVids").append(newDiv);
 }
