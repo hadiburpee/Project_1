@@ -1,4 +1,5 @@
 var searchParam = [];
+// var excludedSearch = [];
 var ingredientsCounter = -1;
 var searchResponse = null;
 var youTubeResponse = null;
@@ -67,6 +68,10 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         addFavorite.attr("value", searchResponse.hits[i].recipe.label);
         addFavorite.attr("link", searchResponse.hits[i].recipe.url);
         addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
+        addFavorite.attr("cal", searchResponse.hits[i].recipe.calories);
+        addFavorite.attr("origSrc", searchResponse.hits[i].recipe.url);
+        addFavorite.attr("srcName", searchResponse.hits[i].recipe.source);
+        addFavorite.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
         addFavorite.text("Add ♡");
 
         // Recipe Image
@@ -77,13 +82,10 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         
         buttonsDiv.append(addFavorite, viewRecipe);
         eachResult.append(imgTag, mealTitle, buttonsDiv);
-        recipeDiv.prepend(eachResult);
-
-        
-        
+        recipeDiv.prepend(eachResult);   
     }
     searchYoutube = $(".viewRecipe").val();
-
+    
 });
 }
 
@@ -142,13 +144,21 @@ $("#addItem").on("click", function() {
     var newDiv = $("<div>");
     newDiv.attr("value", searchParam);
     newDiv.addClass("ingredients");
-    newDiv.text(searchParam[ingredientsCounter]);
+    // upperCaser(searchParam[ingredientsCounter]);
+    newDiv.text(upperCaser(searchParam[ingredientsCounter]));
     $("#ingredientsList").append(newDiv);
     $("#input-ingredient").val("");
     //for the reset button
     reset = false;
 
 });
+
+//changes the first letter of the ingredient to uppercase for display
+function upperCaser (string){
+    console.log(string.charAt(0).toUpperCase()+string.slice(1));
+    return string.charAt(0).toUpperCase()+string.slice(1);
+
+}
 
 $(document).on("click", "#addItem", function(){
 
@@ -172,14 +182,20 @@ $("#recipeSearch").on("click", function() {
     $(document).on("click", ".addFavorite", function(){
         var storeMeal = $(this).attr("value");
         var mealLink = $(this).attr("link");
-        var imageLink = $(this).attr("imageLink")
+        var imageLink = $(this).attr("imageLink");
+        var calorie = $(this).attr("cal");
+
+
         // var mealLink = $(this).attr("link")
         console.log("Meal Title click: " + storeMeal);
         //adds a new child for every favorite clicked and stores the title, the link and the image
         database.ref().push({
             title: storeMeal,
             link: mealLink,
-            image: imageLink
+            image: imageLink,
+            cal: calorie,
+
+
         });
     });
 
@@ -211,14 +227,60 @@ $("#recipeSearch").on("click", function() {
             var mealTitle = snapshot.val().title;
             var mealLink = snapshot.val().link;
             var imageLink = snapshot.val().image;
-            var addFav = $("<div>");
-            var addImg = $("<img>");
-            addImg.attr('src', imageLink);
-            var addLink = $("<a>");
-            addLink.attr('href', mealLink);
-            addLink.text(mealTitle);
-            addFav.addClass(".eachResult");
-            $("#ingredientsList").append(mealTitle, addLink, addImg);
+            var calories = snapshot.val().cal
+            
+            var recipeDiv = $("#ingredientsList");
+        // Creates a div to hold INDIVIDUAL results
+            var eachResult = $("<div>");
+            eachResult.addClass("eachResult");
+        // Create div to hold buttons
+            var buttonsDiv = $("<div>");
+            buttonsDiv.addClass("buttonsDiv");
+        // Recipe title
+            var title = $("<p>").text(mealTitle);
+            title.addClass("mealTitle");
+        // View recipe button
+            var viewRecipe = $("<button>");
+            viewRecipe.addClass("viewRecipe");
+            viewRecipe.attr("value", mealTitle);
+            viewRecipe.attr("link", mealLink);
+            viewRecipe.attr("cal", calories);
+        // viewRecipe.attr("origSrc", searchResponse.hits[i].recipe.url);
+        // viewRecipe.attr("srcName", searchResponse.hits[i].recipe.source);
+        // viewRecipe.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
+            viewRecipe.attr("imageLink", imageLink);
+            viewRecipe.text("View Recipe");
+        // console.log(mealTitle);
+        // console.log("Value:" + viewRecipe);
+
+        //adds a favorite button and stores necessary information for
+        // var addFavorite = $("<button>");
+        // addFavorite.addClass("addFavorite");
+        // addFavorite.attr("value", searchResponse.hits[i].recipe.label);
+        // addFavorite.attr("link", searchResponse.hits[i].recipe.url);
+        // addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
+        // addFavorite.text("Add ♡");
+
+        // Recipe Image
+            var imgTag = $("<img>");
+            imgTag.addClass("recipeImage");
+            imgTag.attr("src", imageLink);
+            imgTag.attr("alt", "Recipe Image");
+        
+            buttonsDiv.append("", viewRecipe);
+            eachResult.append(imgTag, title, buttonsDiv);
+            recipeDiv.prepend(eachResult); 
+            
+            
+     ////////////////////////////       
+            // var addFav = $("<div>");
+            // var addImg = $("<img>");
+            // addImg.attr('src', imageLink);
+            // var addLink = $("<a>");
+            // addLink.attr('href', mealLink);
+            // addLink.text(mealTitle);
+            // addFav.addClass(".eachResult");
+            // $("#ingredientsList").append(mealTitle, addLink, addImg);
 
 
         });
