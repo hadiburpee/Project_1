@@ -146,7 +146,7 @@ h1 {
 .viewRecipe {
     font-size: 0.8em;
     color: black;
-    background-color:#3e5a07;;
+    background-color:#3e5a07;
     color: white;
     font-weight: bold;
     width: 100%;
@@ -225,17 +225,21 @@ h1 {
 
 #recipeHolder {
     flex: none;
-    padding: 1%;
+    padding-left: 3%;
     height: 650px;
+    overflow: scroll;
 }
 
 #modalTitle {
-    height: 50px;
-    font-size: 2em;
+    font-size: 4em;
+    font-weight: bold;
     margin-bottom: 5%;
+    padding-top: 2%;
+    font-family: notePad;
 }
 
 #modalImage {
+    border: 2px solid #3e5a07;
     width: 40%;
     border-radius: 10px;
 }
@@ -244,21 +248,22 @@ h1 {
     height: 260px;
     width: 60%;
     float: right;
+    font-size: 2em;
     /* margin-right: 5%; */
 }
 
 #infoList {
     margin-top: 2%;
+    font-size: 1em;
 }
 
 #recipeInstructions {
-    height: 50%;
     margin-top: 3%;
+    font-size: 1.5em;
 }
 
-
 #youTubeVids {
-    border: 1px solid black;
-    flex: none;
+    line-height: 10;
     text-align: center;
+    overflow: scroll;
 }
