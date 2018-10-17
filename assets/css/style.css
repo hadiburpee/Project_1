@@ -2,64 +2,63 @@
     box-sizing: border-box;
 }
 
-/* ======== HOME PAGE ========== */
-.homePage {
-    background-image: url(../images/shutterstock_287093099.jpg);
+
+/* ============ HOME PAGE ============== */
+#homePage {
+    background-image: url(../images/homePage.jpg);
     background-size: cover;
     height: 800px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative; 
+    position: relative;
+    
 }
 
-
 #homeNav {
-    width: 50%;
-    height: 40%;
+    width: 40%;
     float: right;
-    margin-right: 10%;
-    margin-top: 15%;
+    height: 40%;
+    margin-top: 20%;
+    margin-right: 15%;
 }
 
 #started {
-    margin: 8% 0 0 10%;
-    color: white;
     font-size: 8em;
-    font-weight: bolder;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     font-family: notePad;
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 #started:hover {
-    color:#3e5a07;
-    text-shadow: 0 0 2px white;
-    cursor: pointer;
+    text-shadow: none;
+}
+/* ============== END HOME PAGE ============== */
+
+body {
+    background-color: black;
 }
 
-
-/* ========== END HOME PAGE ========== */
-
-
-.indexBody {
+#indexBody {
     background-image: url(../images/recipeBookBackground.jpg);
     background-size: cover;
     height: 800px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;  
+    position: relative;
+    
 }
 
 #mainContainer {
-   /* border: 1px solid black; */
    height: 750px;
-   width: 55%;
-   margin: 2% 0 0 22%;
+   width: 650px;
+   margin: auto;
    text-align: center;
    overflow: scroll;
    padding-top: 1%;
-  
+   /* border: 1px solid black; */
 }
 
 h1 {
@@ -324,11 +323,144 @@ h1 {
 }
 
 
-#twitter-widget-1 {
-   font-size: 3em;
+#tweeticon {
+    background: url("../images/if_twitter_button_322691.png");
+    background-size: 24px;
+    height: 24px;
+    width: 24px;
+    margin-left: 20px;
+    src: url("https://platform.twitter.com/widgets/tweet_button.d547ddd75cc4ca7cc5a63b70da3da301.en.html#dnt=false&amp;id=twitter-widget-1&amp;lang=en&amp;original_referer=https%3A%2F%2Ffiddle.jshell.net%2Fswarnendu%2Ffb7t0fpe%2F3%2Fshow%2Flight%2F&amp;size=m&amp;time=1539655922875&amp;type=share&amp;url=https%3A%2F%2Ffiddle.jshell.net%2Fswarnendu%2Ffb7t0fpe%2F3%2Fshow%2Flight%2F");
 }
 
-#socialLinks {
-    display: flex;
+
+
+
+
+/* ======== MEDIA QUERIES =========== */
+
+
+@media only screen and (max-width: 1354px) {
+
+
+    #indexBody {
+        padding-top: 30px;
+    }
+
+    #mainContainer {
+        height: 750px;
+    }
 }
 
+
+
+@media only screen and (max-width: 1295px) {
+
+
+    #indexBody {
+        padding-top: 40px;
+    }
+
+
+    #mainContainer {
+        margin: auto;
+        height: 710px;
+    }
+
+    h1 {
+        font-size: 4.5em;
+    }
+
+    .ingredients {
+        font-size: 2em;
+    }
+}
+
+@media only screen and (max-width: 1220px) {
+
+    #indexBody {
+        padding-top: 70px;
+    }
+
+    #mainContainer {
+        height: 640px;
+    }
+
+
+    #recipeSearch {
+        font-size: 1em;
+    }
+
+    #viewFavorites, #addItem, #resetButton {
+        font-size: 0.7em;
+    }
+
+    .eachResult {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 1100px) {
+
+    #mainContainer {
+        margin: auto;
+        height: 650px;
+        width: 500px;
+    }
+
+    h1 {
+        font-size: 4em;
+    }
+
+    .ingredients {
+        font-size: 2em;
+    }
+}
+
+
+
+@media only screen and (max-width: 780px) {
+
+    #mainContainer {
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+
+    #mainContainer {
+        width: 300px;
+        height: 620px;
+        /* padding-top: 90px; */
+    }
+
+    h1 {
+        font-size: 3.5em;
+        margin-right: 0px;
+    }
+
+    #addItem, #resetButton {
+        width: 60px;
+    }
+
+    #viewFavorites {
+        width: 50px;
+    }
+
+    #recipeSearch {
+        width: 100px;
+        font-size: 1em;
+    }
+
+     .eachResult {
+        width: 200px;
+    }
+
+    .addFavorite {
+        display: none;
+    }
+
+    .mealTitle {
+        font-size: 0.6em;
+    }
+}
