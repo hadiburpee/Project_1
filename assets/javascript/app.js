@@ -7,8 +7,9 @@ var searchYoutube = null;
 var instructions = null;
 var tubeSearch = false;
 var reset =  false;
+var favoriteView = false;
 
-  // Initialize Firebase
+// Initialize Firebase.  This will be used to store favorites
   var config = {
     apiKey: "AIzaSyCN2egZvBwkjcRawYcQ6v314gMNbvB8hDM",
     authDomain: "ucla-project-1-218617.firebaseapp.com",
@@ -20,7 +21,9 @@ var reset =  false;
     firebase.initializeApp(config);
     var database = firebase.database();
 
+// =================================EDAMAM API ======================================
 
+//Searches the edamam api for ingredients
 function recipeSearch(x, y) {
 var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key=f6c831dedf07d960068e68c5e0623e97";
 
@@ -28,14 +31,10 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
     url: queryURL,
     method: "GET"
 }).then(function(response) {
-
     searchResponse = response;
-    // console.log(response);
-  
     console.log(searchResponse);
 
-
-
+    //for loop to add search responses to page.  Includes making buttons and storing values/attributes for further identification
     for (var i = 0; i < searchResponse.hits.length; i++) {
         // Creates a div to hold ALL of the recipe results
         var recipeDiv = $("#ingredientsList");
@@ -59,14 +58,12 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         viewRecipe.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
         viewRecipe.attr("imageLink", searchResponse.hits[i].recipe.image);
         viewRecipe.text("View Recipe");
-        // console.log(mealTitle);
-        // console.log("Value:" + viewRecipe);
 
         //adds a favorite button and stores necessary information for
         var addFavorite = $("<button>");
         addFavorite.addClass("addFavorite");
         addFavorite.attr("value", searchResponse.hits[i].recipe.label);
-        addFavorite.attr("link", searchResponse.hits[i].recipe.url);
+        addFavorite.attr("link", searchResponse.hits[i].recipe.ingredientLines);
         addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
         addFavorite.attr("cal", searchResponse.hits[i].recipe.calories);
         addFavorite.attr("origSrc", searchResponse.hits[i].recipe.url);
@@ -89,7 +86,7 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
 });
 }
 
-
+//To view further details of the selected recipe
 $(document).on("click", ".viewRecipe", function(event) {
 
     event.preventDefault();
@@ -134,8 +131,7 @@ $(document).on("click", ".viewRecipe", function(event) {
 });
 
 
-
-// Add item
+// Add ingredients to the list of ingredients for a receipe
 $("#addItem").on("click", function() {
 
     ingredientsCounter++;
@@ -160,168 +156,128 @@ function upperCaser (string){
 
 }
 
+//prevents the add button (submit type) from refreshing the page
 $(document).on("click", "#addItem", function(){
 
     event.preventDefault();
 });
 
-// Search Recipes
+// Search Recipes by calling the API with search recipe is clicked on
 $("#recipeSearch").on("click", function() {
-
     $(".ingredients").val(recipeSearch(searchParam));
-    $("#ingredientsList").html("");
-    
-
+    $("#ingredientsList").html("");    
 });
 
-
-
-    
-
-    //function to store favorites
-    $(document).on("click", ".addFavorite", function(){
+//function to store favorites when favorite button is clicked
+$(document).on("click", ".addFavorite", function(){
+        favoriteView = false;
         var storeMeal = $(this).attr("value");
-        var mealLink = $(this).attr("link");
+        var instructions = $(this).attr("link");
         var imageLink = $(this).attr("imageLink");
         var calorie = $(this).attr("cal");
+        var healthLabel = $(this).attr("healthLabels");
+        var OrigSource = $(this).attr("origSrc");
 
-
-        // var mealLink = $(this).attr("link")
         console.log("Meal Title click: " + storeMeal);
         //adds a new child for every favorite clicked and stores the title, the link and the image
         database.ref().push({
             title: storeMeal,
-            link: mealLink,
+            link: instructions,
             image: imageLink,
             cal: calorie,
-
-
+            health: healthLabel,
+            origS: OrigSource
         });
-    });
+});
 
 
-    //function button reset everything and allow to add new ingredients
+//function to start the search over everything and allow to add new ingredients
+$(document).on("click", "#resetButton", function(){
+    console.log("reset value: " + reset);
+    if(reset == false){
+    resetDiv();
+    reset = true;
 
-    $(document).on("click", "#resetButton", function(){
-        console.log("reset value: " + reset);
-        if(reset == false){
-        resetDiv();
-        reset = true;
-
-        }
-
-    });
-
-    //reset function to be called in reset button and view favorites
-    function resetDiv(){
-        searchParam = [];
-        $("#ingredientsList").empty();
-        ingredientsCounter = -1;
     }
+});
+
+//reset function to clear divs for new recipe and ingredients
+function resetDiv(){
+    searchParam = [];
+    $("#ingredientsList").empty();
+    ingredientsCounter = -1;
+    favoriteView = false;
+}
 
 
-    //for a button to view favorites
-    $(document).on("click", "#viewFavorites", function(){
-        resetDiv();
-        database.ref().on("child_added", function(snapshot){
-            var mealTitle = snapshot.val().title;
-            var mealLink = snapshot.val().link;
-            var imageLink = snapshot.val().image;
-            var calories = snapshot.val().cal
-            
-            var recipeDiv = $("#ingredientsList");
+//for a button to view favorites
+$(document).on("click", "#viewFavorites", function(){
+    resetDiv();
+    favoriteView = true; 
+    database.ref().on("child_added", function(snapshot){
+        if(favoriteView == true){
+        var mealTitle = snapshot.val().title;
+        var instructions = snapshot.val().link;
+        var imageLink = snapshot.val().image;
+        var calories = snapshot.val().cal
+        var healthLab = snapshot.val().health;
+        var origSrc = snapshot.val().origS;    
+        var recipeDiv = $("#ingredientsList");
         // Creates a div to hold INDIVIDUAL results
-            var eachResult = $("<div>");
-            eachResult.addClass("eachResult");
+        var eachResult = $("<div>");
+        eachResult.addClass("eachResult");
         // Create div to hold buttons
-            var buttonsDiv = $("<div>");
-            buttonsDiv.addClass("buttonsDiv");
+        var buttonsDiv = $("<div>");
+        buttonsDiv.addClass("buttonsDiv");
         // Recipe title
-            var title = $("<p>").text(mealTitle);
-            title.addClass("mealTitle");
+        var title = $("<p>").text(mealTitle);
+        title.addClass("mealTitle");
         // View recipe button
-            var viewRecipe = $("<button>");
-            viewRecipe.addClass("viewRecipe");
-            viewRecipe.attr("value", mealTitle);
-            viewRecipe.attr("link", mealLink);
-            viewRecipe.attr("cal", calories);
-        // viewRecipe.attr("origSrc", searchResponse.hits[i].recipe.url);
+        var viewRecipe = $("<button>");
+        viewRecipe.addClass("viewRecipe");
+        viewRecipe.attr("value", mealTitle);
+        viewRecipe.attr("link", instructions);
+        viewRecipe.attr("cal", calories);
+        viewRecipe.attr("origSrc", origSrc);
         // viewRecipe.attr("srcName", searchResponse.hits[i].recipe.source);
-        // viewRecipe.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
-            viewRecipe.attr("imageLink", imageLink);
-            viewRecipe.text("View Recipe");
-        // console.log(mealTitle);
-        // console.log("Value:" + viewRecipe);
-
-        //adds a favorite button and stores necessary information for
-        // var addFavorite = $("<button>");
-        // addFavorite.addClass("addFavorite");
-        // addFavorite.attr("value", searchResponse.hits[i].recipe.label);
-        // addFavorite.attr("link", searchResponse.hits[i].recipe.url);
-        // addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
-        // addFavorite.text("Add ♡");
+        viewRecipe.attr("healthLabels", healthLab);
+        viewRecipe.attr("imageLink", imageLink);
+        viewRecipe.text("View Recipe");
 
         // Recipe Image
-            var imgTag = $("<img>");
-            imgTag.addClass("recipeImage");
-            imgTag.attr("src", imageLink);
-            imgTag.attr("alt", "Recipe Image");
+        var imgTag = $("<img>");
+        imgTag.addClass("recipeImage");
+        imgTag.attr("src", imageLink);
+        imgTag.attr("alt", "Recipe Image");
         
-            buttonsDiv.append("", viewRecipe);
-            eachResult.append(imgTag, title, buttonsDiv);
-            recipeDiv.prepend(eachResult); 
-            
-            
-     ////////////////////////////       
-            // var addFav = $("<div>");
-            // var addImg = $("<img>");
-            // addImg.attr('src', imageLink);
-            // var addLink = $("<a>");
-            // addLink.attr('href', mealLink);
-            // addLink.text(mealTitle);
-            // addFav.addClass(".eachResult");
-            // $("#ingredientsList").append(mealTitle, addLink, addImg);
-
-
-        });
-
-
-
+        buttonsDiv.append("", viewRecipe);
+        eachResult.append(imgTag, title, buttonsDiv);
+        recipeDiv.prepend(eachResult); 
+        }
     });
+});
 
+// =================================YOUTUBE API ======================================
+// Creating an AJAX call for the specific recipe button being clicked
+function youtubeSearchAPI(recipe) {
 
+var queryURL2 = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + recipe + " how to make" + "&key=AIzaSyBRPCZsyEmsspOCYbRltXGrLgf8-o9YIRY";
 
-
-
-
-    // =================================YOUTUBE API ======================================
-    // Creating an AJAX call for the specific recipe button being clicked
-    function youtubeSearchAPI(recipe) {
-
-        
-    var queryURL2 = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + recipe + " how to make" + "&key=AIzaSyBRPCZsyEmsspOCYbRltXGrLgf8-o9YIRY";
-
-
-    $.ajax({
-        url: queryURL2,
-        method: "GET"
-        }).then(function(response) {
-            console.log(response);
-            console.log(response.items[0].id.videoId);
-
-           
-            
-        
-            //for loop to call addVideo function for youtube display    
-        for(i=0; i<3; i++){
-            youTubeResponse = response.items[i].id.videoId; 
-            addVideo(youTubeResponse);
-            //allows for reset button to work
-            reset = false;
+$.ajax({
+    url: queryURL2,
+    method: "GET"
+    }).then(function(response) {
+    console.log(response);
+    console.log(response.items[0].id.videoId);
+    //for loop to call addVideo function for youtube display    
+    for(i=0; i<3; i++){
+        youTubeResponse = response.items[i].id.videoId; 
+        addVideo(youTubeResponse);
+        //allows for reset button to work
+        reset = false;
         }
         }, function(err){
         console.log('*****',err)
-
     });
     
 };
