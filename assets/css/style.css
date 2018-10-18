@@ -292,6 +292,16 @@ h1 {
     font-family: notePad;
 }
 
+.Alternative {
+    font-size: 4em;
+    height: 90px;
+    margin-bottom: 5%;
+    font-weight: bold;
+    
+    
+    font-family: notePad;
+}
+
 #modalImage {
     border: 2px solid #3e5a07;
     width: 40%;
@@ -317,9 +327,24 @@ h1 {
 }
 
 #youTubeVids {
-    line-height: 10;
+    line-height: 2;
     text-align: center;
     overflow: scroll;
+}
+
+#frameVid{
+    padding-bottom: 15px;
+    padding-top: 10px;
+    border-bottom: 1px solid #3e5a07;
+    
+}
+
+#frameVid:last-child{
+    /* padding-bottom: 15px;
+    padding-top: 10px;
+    border-bottom: 1px solid #3e5a07; */
+    border-bottom: none;
+    
 }
 
 
