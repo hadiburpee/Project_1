@@ -122,6 +122,10 @@ $(document).on("click", ".viewRecipe", function(event) {
     var searchYou = $(this).val();
 
     console.log("search you" + searchYou);
+
+    $("#facebook").attr('src', "https://www.facebook.com/plugins/share_button.php?href=" + originalSource + "&layout=button&size=large&mobile_iframe=true&width=73&height=28&appId");
+    $("#twitter").attr('src', "https://platform.twitter.com/widgets/tweet_button.html?size=l&url=" + originalSource + "&related=twitterapi%2Ctwitter&text=Try%20this%20recipe: ");
+
     //displays the modal
     modalUp();
     
@@ -270,6 +274,11 @@ $.ajax({
     console.log(response);
     console.log(response.items[0].id.videoId);
     //for loop to call addVideo function for youtube display    
+    
+    var newDiv = $("<div>");
+    newDiv.addClass("Alternative");
+    $("#youTubeVids").prepend(newDiv);
+    newDiv.text("Alternative Recipes");
     for(i=0; i<3; i++){
         youTubeResponse = response.items[i].id.videoId; 
         addVideo(youTubeResponse);
@@ -278,7 +287,7 @@ $.ajax({
         }
         }, function(err){
         console.log('*****',err)
-    });
+    }); 
     
 };
 
@@ -289,6 +298,7 @@ function addVideo(x){
     newDiv.attr('id', 'frameVid').attr('width', '400').attr('height','200').attr('frameborder', '0').attr("allowfullscreen", '').attr('src', url);
     console.log(newDiv);
     $("#youTubeVids").append(newDiv);
+    
 }
 
 // MODAL 

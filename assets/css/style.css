@@ -300,7 +300,7 @@ h5, h6 {
 #recipeHolder {
     flex: none;
     padding-left: 3%;
-    height: 650px;
+    height: 800px;
     overflow: scroll;
 }
 
@@ -309,6 +309,16 @@ h5, h6 {
     font-weight: bold;
     margin-bottom: 5%;
     padding-top: 2%;
+    font-family: notePad;
+}
+
+.Alternative {
+    font-size: 4em;
+    height: 90px;
+    margin-bottom: 5%;
+    font-weight: bold;
+    
+    
     font-family: notePad;
 }
 
@@ -337,9 +347,24 @@ h5, h6 {
 }
 
 #youTubeVids {
-    line-height: 10;
+    line-height: 2;
     text-align: center;
     overflow: scroll;
+}
+
+#frameVid{
+    padding-bottom: 15px;
+    padding-top: 10px;
+    border-bottom: 1px solid #3e5a07;
+    
+}
+
+#frameVid:last-child{
+    /* padding-bottom: 15px;
+    padding-top: 10px;
+    border-bottom: 1px solid #3e5a07; */
+    border-bottom: none;
+    
 }
 
 
@@ -357,7 +382,26 @@ h5, h6 {
 
 
 /* ======== MEDIA QUERIES =========== */
+@media only screen and (max-width: 1405px) { 
 
+    #youTubeVids {
+        width: 200px;
+    }
+
+
+
+    #recipeInstructions {
+        margin-top: 50px !important;
+    }
+
+    #infoList {
+        font-size: 0.7em;
+    }
+
+    #modalImage {
+        width: 40%;
+    }
+}
 
 @media only screen and (max-width: 1354px) {
 
@@ -422,6 +466,26 @@ h5, h6 {
 
 @media only screen and (max-width: 1100px) {
 
+
+    #recipeInstructions {
+        margin-top: 0;
+    }
+
+    #modalImage {
+        width: 60%;
+        margin-bottom: 30px;
+    }
+
+    #recipeDetails {
+        float: left;
+        height: 200px;
+    }
+
+    #recipeInstructions {
+        margin-top: 5px !important;
+        float: left;
+    }
+
     #mainContainer {
         margin: auto;
         height: 650px;
@@ -437,14 +501,39 @@ h5, h6 {
     }
 }
 
+@media only screen and (max-width: 980px) {
+
+    #recipeInstructions {
+        margin-top: 40px !important;
+    
+    }
+}
 
 
 @media only screen and (max-width: 780px) {
+
+    #modalImage {
+        width: 80%;
+    }
+
+    #recipeInstructions {
+        margin-top: 60px !important;
+    }
+
 
     #mainContainer {
         width: 500px;
     }
 }
+
+@media only screen and (max-width: 645px) {
+
+    #recipeInstructions {
+        margin-top: 90px !important;
+    }
+
+}
+
 
 @media only screen and (max-width: 530px) {
 
