@@ -287,7 +287,7 @@ $.ajax({
         }
         }, function(err){
         console.log('*****',err)
-    });
+    }); 
     
 };
 
