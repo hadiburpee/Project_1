@@ -135,7 +135,7 @@ $(document).on("click", ".viewRecipe", function(event) {
 });
 
 
-// Add ingredients to the list of ingredients for a receipe
+// Add ingredients to the list of ingredients for a recipe
 $("#addItem").on("click", function() {
 
     ingredientsCounter++;

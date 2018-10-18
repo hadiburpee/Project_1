@@ -297,8 +297,6 @@ h1 {
     height: 90px;
     margin-bottom: 5%;
     font-weight: bold;
-    
-    
     font-family: notePad;
 }
 
@@ -324,6 +322,7 @@ h1 {
 #recipeInstructions {
     margin-top: 3%;
     font-size: 1.5em;
+    margin-bottom: 20px !important;
 }
 
 #youTubeVids {
@@ -372,6 +371,7 @@ h1 {
 
     #recipeInstructions {
         margin-top: 50px !important;
+       
     }
 
     #infoList {
@@ -385,6 +385,7 @@ h1 {
 
 @media only screen and (max-width: 1354px) {
 
+    
 
     #indexBody {
         padding-top: 30px;
@@ -399,6 +400,9 @@ h1 {
 
 @media only screen and (max-width: 1295px) {
 
+    #frameVid {
+        width: 300px;
+    }
 
     #indexBody {
         padding-top: 40px;
@@ -415,12 +419,12 @@ h1 {
     }
 
     .ingredients {
-        font-size: 2em;
+        font-size: 4em;
     }
 }
 
 @media only screen and (max-width: 1220px) {
-
+    
     #indexBody {
         padding-top: 70px;
     }
@@ -444,8 +448,19 @@ h1 {
 
 }
 
+@media only screen and (max-width: 1160px) {
+
+    .Alternative {
+        font-size: 3em;
+    }
+}
+
+
 @media only screen and (max-width: 1100px) {
 
+    #facebook, #twitter {
+        display: none;
+    }
 
     #recipeInstructions {
         margin-top: 0;
@@ -483,10 +498,24 @@ h1 {
 
 @media only screen and (max-width: 980px) {
 
+    #frameVid {
+        width: 250px;
+    }
+
     #recipeInstructions {
         margin-top: 40px !important;
-    
     }
+
+    #youTubeVids {
+        float: none !important;
+    }
+}
+
+@media only screen and (max-width: 880px) {
+
+    #youTubeVids {
+        display: none;
+        }
 }
 
 
@@ -509,8 +538,14 @@ h1 {
 @media only screen and (max-width: 645px) {
 
     #recipeInstructions {
-        margin-top: 90px !important;
+        margin-top: 5px !important;
     }
+
+    #healthLabels {
+        display: none;
+    }
+
+
 
 }
 
@@ -522,6 +557,7 @@ h1 {
         height: 620px;
         /* padding-top: 90px; */
     }
+
 
     h1 {
         font-size: 4em;
@@ -545,6 +581,8 @@ h1 {
     .eachResult {
         text-align: center;
     }
+
+   
 
     .recipeImage {
         width: 100%;
