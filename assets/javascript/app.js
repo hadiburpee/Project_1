@@ -1,5 +1,4 @@
 var searchParam = [];
-// var excludedSearch = [];
 var ingredientsCounter = -1;
 var searchResponse = null;
 var youTubeResponse = null;
@@ -53,7 +52,7 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         viewRecipe.attr("value", searchResponse.hits[i].recipe.label);
         viewRecipe.attr("link", searchResponse.hits[i].recipe.ingredientLines);
         viewRecipe.attr("cal", searchResponse.hits[i].recipe.calories);
-        viewRecipe.attr("origSrc", searchResponse.hits[i].recipe.url);
+        viewRecipe.attr("origsrc", searchResponse.hits[i].recipe.url);
         viewRecipe.attr("srcName", searchResponse.hits[i].recipe.source);
         viewRecipe.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
         viewRecipe.attr("imageLink", searchResponse.hits[i].recipe.image);
@@ -66,7 +65,7 @@ var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key
         addFavorite.attr("link", searchResponse.hits[i].recipe.ingredientLines);
         addFavorite.attr("imageLink", searchResponse.hits[i].recipe.image);
         addFavorite.attr("cal", searchResponse.hits[i].recipe.calories);
-        addFavorite.attr("origSrc", searchResponse.hits[i].recipe.url);
+        addFavorite.attr("origsrc", searchResponse.hits[i].recipe.url);
         addFavorite.attr("srcName", searchResponse.hits[i].recipe.source);
         addFavorite.attr("healthLabels", searchResponse.hits[i].recipe.healthLabels);
         addFavorite.text("Add ♡");
@@ -105,7 +104,7 @@ $(document).on("click", ".viewRecipe", function(event) {
     $("#calorieCount").text("Calorie Count: " + Math.floor(calories));
     
     // Original Source
-    var originalSource = $(this).attr("origSrc");
+    var originalSource = $(this).attr("origsrc");
     var sourceName = $(this).attr("srcName");
     $("#originalSOurce").text(sourceName);
     $("#originalSOurce").attr("href", originalSource);
@@ -180,7 +179,7 @@ $(document).on("click", ".addFavorite", function(){
         var imageLink = $(this).attr("imageLink");
         var calorie = $(this).attr("cal");
         var healthLabel = $(this).attr("healthLabels");
-        var OrigSource = $(this).attr("origSrc");
+        var OrigSource = $(this).attr("origsrc");
 
         console.log("Meal Title click: " + storeMeal);
         //adds a new child for every favorite clicked and stores the title, the link and the image
@@ -242,7 +241,7 @@ $(document).on("click", "#viewFavorites", function(){
         viewRecipe.attr("value", mealTitle);
         viewRecipe.attr("link", instructions);
         viewRecipe.attr("cal", calories);
-        viewRecipe.attr("origSrc", origSrc);
+        viewRecipe.attr("origsrc", origSrc);
         // viewRecipe.attr("srcName", searchResponse.hits[i].recipe.source);
         viewRecipe.attr("healthLabels", healthLab);
         viewRecipe.attr("imageLink", imageLink);
@@ -273,7 +272,7 @@ $.ajax({
     }).then(function(response) {
     console.log(response);
     console.log(response.items[0].id.videoId);
-    //for loop to call addVideo function for youtube display    
+    //for loop to call addVideo function for youtube display.    
     
     var newDiv = $("<div>");
     newDiv.addClass("Alternative");
