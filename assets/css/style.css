@@ -21,6 +21,7 @@
     height: 40%;
     margin-top: 20%;
     margin-right: 15%;
+    text-align: center;
 }
 
 #started {
@@ -29,6 +30,15 @@
     text-shadow: 2px 2px 4px #000000;
     font-family: notePad;
     text-decoration: none;
+}
+
+#instructions {
+    font-size: 25px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: notePad;
+    text-decoration: none;
+    text-align: center;
 }
 
 #started:hover {
@@ -66,6 +76,16 @@ h1 {
     font-family: notePad;
     font-size: 5em;
     margin-right: 7%;
+}
+
+h5, h6 {
+    /* font-weight: bold; */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    color: white;
+    text-align: right;
+    /* text-shadow: -1px 0 #3e5a07, 0 1px #3e5a07, 1px 0 #3e5a07, 0 -1px #3e5a07; */
+    text-shadow: 1px 0 #3e5a07, 0 1px #3e5a07, 1px 0 #3e5a07, 0 1px #3e5a07;
 }
 
 .form-group {
