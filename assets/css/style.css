@@ -33,12 +33,16 @@
 }
 
 #instructions {
-    font-size: 25px;
+    font-size: 5em;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     font-family: notePad;
     text-decoration: none;
     text-align: center;
+}
+
+#instructions:hover {
+    text-shadow: none;
 }
 
 #started:hover {
@@ -638,4 +642,19 @@ h5, h6 {
     .mealTitle {
         font-size: 0.6em;
     }
+
+    #started {
+        font-size: 6em;
+
+        
+    }
+    
+    #instructions {
+        font-size: 3em;
+       
+        
+    }
+
+
+
 }
