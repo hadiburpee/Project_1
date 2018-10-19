@@ -24,7 +24,7 @@ var favoriteView = false;
 
 //Searches the edamam api for ingredients
 function recipeSearch(x, y) {
-var queryURL = "http://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key=f6c831dedf07d960068e68c5e0623e97";
+var queryURL = "https://api.edamam.com/search?q=" + x + "&app_id=f2e7d5eb&app_key=f6c831dedf07d960068e68c5e0623e97";
 
     $.ajax({
     url: queryURL,
