@@ -104,8 +104,8 @@ h1 {
     margin-right: 7%;
 }
 
-h6 {
-    font-weight: bold;
+h5, h6 {
+    /* font-weight: bold; */
     font-family: 'Courier New', Courier, monospace;
     font-size: 20px;
     color: white;
@@ -142,6 +142,8 @@ h6 {
 
 #viewFavorites {
     width: 12%;
+    font-size: 1.2em;
+    height: 35px;
     color: white;
     background-color: #3e5a07;
     border-radius: 5px;
@@ -481,14 +483,16 @@ h6 {
 
 
     #recipeSearch {
-        font-size: 1em;
+        font-size: 2em;
+        overflow: hidden;
     }
 
-    #viewFavorites, #addItem, #resetButton {
+    #addItem, #resetButton {
         font-size: 0.7em;
     }
 
     .eachResult {
+        overflow: hidden;
         width: 100%;
     }
 
@@ -540,6 +544,19 @@ h6 {
     .ingredients {
         font-size: 2em;
     }
+
+    #recipeSearch {
+        font-size: 1.6em;
+    
+        /* overflow: hidden; */
+    }
+
+    #viewFavorites {
+        font-size: 0.8em;
+        height: 30px;
+       
+    }
+
 }
 
 @media only screen and (max-width: 980px) {
@@ -598,6 +615,15 @@ h6 {
 
 @media only screen and (max-width: 530px) {
 
+    .row { 
+        width: 720px;
+    }
+
+    #recipeHolder {
+        width: 400px;
+    }
+
+
     #mainContainer {
         width: 340px;
         height: 620px;
@@ -651,10 +677,10 @@ h6 {
     
     #instructions {
         font-size: 3em;
-       
-        
     }
 
-
+    #recipeDetails {
+        height: 140px
+    }
 
 }
