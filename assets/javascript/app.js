@@ -256,6 +256,7 @@ $(document).on("click", "#viewFavorites", function(){
         buttonsDiv.append("", viewRecipe);
         eachResult.append(imgTag, title, buttonsDiv);
         recipeDiv.prepend(eachResult); 
+        reset = false;
         }
     });
 });
