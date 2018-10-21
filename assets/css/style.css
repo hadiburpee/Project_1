@@ -683,4 +683,9 @@ h5, h6 {
         height: 140px
     }
 
+
+    #input-ingredient {
+        font-size: 1em;
+    }
+
 }
